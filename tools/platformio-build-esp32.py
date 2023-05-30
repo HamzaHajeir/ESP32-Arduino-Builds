@@ -138,6 +138,7 @@ env.Append(
         join(FRAMEWORK_DIR, "tools", "sdk", "esp32", "include", "lwip", "lwip", "src", "include"),
         join(FRAMEWORK_DIR, "tools", "sdk", "esp32", "include", "lwip", "port", "esp32", "include"),
         join(FRAMEWORK_DIR, "tools", "sdk", "esp32", "include", "lwip", "port", "esp32", "include", "arch"),
+        join(FRAMEWORK_DIR, "tools", "sdk", "esp32", "include", "lwip", "lwip", "src", "apps", "altcp_tls"),
         join(FRAMEWORK_DIR, "tools", "sdk", "esp32", "include", "soc", "include"),
         join(FRAMEWORK_DIR, "tools", "sdk", "esp32", "include", "soc", "esp32"),
         join(FRAMEWORK_DIR, "tools", "sdk", "esp32", "include", "soc", "esp32", "include"),
