@@ -4,7 +4,7 @@ esp32-camera: master e689c3b
 esp-dl: master 0632d24
 esp-insights: main b088a60
 esp_littlefs: master 9eeac09
-esp-rainmaker: master 0b1a9b1
+esp-rainmaker: master 44797a9
 espressif__esp-dsp: master 8997ed9
 esp-sr: master 7ba6ef3
 tinyusb: master ddc029ce5
