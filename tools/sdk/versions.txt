@@ -1,5 +1,5 @@
 esp-idf: release/v4.4 fd5e03b221
-arduino: release/v2.x ac814eed
+arduino: idf-release/v4.4 16c79dbc
 esp32-camera: master e689c3b
 esp-dl: master 0632d24
 esp-insights: main e057926
