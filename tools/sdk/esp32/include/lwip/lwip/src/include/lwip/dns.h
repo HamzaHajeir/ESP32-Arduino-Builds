@@ -112,7 +112,6 @@ err_t            dns_gethostbyname_addrtype(const char *hostname, ip_addr_t *add
                                    dns_found_callback found, void *callback_arg,
                                    u8_t dns_addrtype);
 #if ESP_DNS
-void             dns_clear_servers(bool keep_fallback);
 void             dns_clear_cache(void);
 #endif
 

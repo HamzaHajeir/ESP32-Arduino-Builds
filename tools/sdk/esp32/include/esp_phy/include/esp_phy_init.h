@@ -151,12 +151,6 @@ esp_err_t esp_phy_store_cal_data_to_nvs(const esp_phy_calibration_data_t* cal_da
 esp_err_t esp_phy_erase_cal_data_in_nvs(void);
 
 /**
- * @brief Get phy initialize status
- * @return  return true if phy is already initialized.
- */
-bool esp_phy_is_initialized(void);
-
-/**
  * @brief Enable PHY and RF module
  *
  * PHY and RF module should be enabled in order to use WiFi or BT.
@@ -175,6 +169,25 @@ void esp_phy_enable(void);
  *
  */
 void esp_phy_disable(void);
+
+/**
+ * @brief Enable BTBB module
+ *
+ * BTBB module should be enabled in order to use IEEE802154 or BT.
+ * Now BTBB enabling job is done automatically when start IEEE802154 or BT. Users should not
+ * call this API in their application.
+ *
+ */
+void esp_btbb_enable(void);
+
+/**
+ * @brief Disable BTBB module
+ *
+ * Dsiable BTBB module, used by IEEE802154 or Bluetooth.
+ * Users should not call this API in their application.
+ *
+ */
+void esp_btbb_disable(void);
 
 /**
  * @brief Load calibration data from NVS and initialize PHY and RF module

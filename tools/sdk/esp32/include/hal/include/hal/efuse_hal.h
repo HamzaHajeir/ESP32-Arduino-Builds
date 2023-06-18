@@ -8,11 +8,17 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "soc/soc_caps.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+
+/**
+ * @brief get factory mac address
+ */
+void efuse_hal_get_mac(uint8_t *mac);
 
 /**
  * @brief Returns chip version
@@ -39,6 +45,17 @@ uint32_t efuse_hal_get_major_chip_version(void);
  * @brief Returns minor chip version
  */
 uint32_t efuse_hal_get_minor_chip_version(void);
+
+#if SOC_ECDSA_SUPPORTED
+/**
+ * @brief Set the efuse block that should be used as ECDSA private key
+ *
+ * @note The efuse block must be burnt with key purpose ECDSA_KEY
+ *
+ * @param efuse_key_blk Efuse key block number (Must be in [EFUSE_BLK_KEY0...EFUSE_BLK_KEY_MAX - 1] range)
+ */
+void efuse_hal_set_ecdsa_key(int efuse_key_blk);
+#endif
 
 #ifdef __cplusplus
 }

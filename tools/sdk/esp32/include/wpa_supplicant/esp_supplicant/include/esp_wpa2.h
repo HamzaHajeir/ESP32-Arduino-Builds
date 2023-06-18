@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2019-2022 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2019-2021 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -32,7 +32,7 @@ extern "C" {
 /**
   * @brief  Enable wpa2 enterprise authentication.
   *
-  * @attention 1. wpa2 enterprise authentication can only be used when ESP32 station is enabled.
+  * @attention 1. wpa2 enterprise authentication can only be used when station mode is enabled.
   * @attention 2. wpa2 enterprise authentication can only support TLS, PEAP-MSCHAPv2 and TTLS-MSCHAPv2 method.
   *
   * @return
@@ -44,7 +44,7 @@ esp_err_t esp_wifi_sta_wpa2_ent_enable(void);
 /**
   * @brief  Disable wpa2 enterprise authentication.
   *
-  * @attention 1. wpa2 enterprise authentication can only be used when ESP32 station is enabled.
+  * @attention 1. wpa2 enterprise authentication can only be used when station mode is enabled.
   * @attention 2. wpa2 enterprise authentication can only support TLS, PEAP-MSCHAPv2 and TTLS-MSCHAPv2 method.
   *
   * @return
@@ -221,7 +221,7 @@ esp_err_t esp_wifi_sta_wpa2_set_suiteb_192bit_certification(bool enable);
   * @brief  Set client pac file
   *
   * @attention  1. For files read from the file system, length has to be decremented by 1 byte.
-  * @attention  2. Disabling the WPA_MBEDTLS_CRYPTO config is required to use EAP-FAST.
+  * @attention  2. Disabling the ESP_WIFI_MBEDTLS_TLS_CLIENT config is required to use EAP-FAST.
   *
   * @param  pac_file: pointer to the pac file
   *         pac_file_len: length of the pac file
@@ -235,7 +235,7 @@ esp_err_t esp_wifi_sta_wpa2_ent_set_pac_file(const unsigned char *pac_file, int 
 /**
   * @brief  Set Phase 1 parameters for EAP-FAST
   *
-  * @attention  1. Disabling the WPA_MBEDTLS_CRYPTO config is required to use EAP-FAST.
+  * @attention  1. Disabling the ESP_WIFI_MBEDTLS_TLS_CLIENT config is required to use EAP-FAST.
   *
   * @param  config: eap fast phase 1 configuration
   *
@@ -245,6 +245,17 @@ esp_err_t esp_wifi_sta_wpa2_ent_set_pac_file(const unsigned char *pac_file, int 
   *    - ESP_ERR_NO_MEM: fail(internal memory malloc fail)
   */
 esp_err_t esp_wifi_sta_wpa2_ent_set_fast_phase1_params(esp_eap_fast_config config);
+
+/**
+  * @brief  Use default CA cert bundle for server validation
+  *
+  * @use_default_bundle : whether to use bundle or not
+  *
+  * @return
+  *    - ESP_OK: succeed
+  *    - ESP_FAIL: fail
+  */
+esp_err_t esp_wifi_sta_wpa2_use_default_cert_bundle(bool use_default_bundle);
 
 #ifdef __cplusplus
 }

@@ -241,7 +241,7 @@ static inline void emac_ll_set_back_off_limit(emac_mac_dev_t *mac_regs, uint32_t
 
 static inline void emac_ll_deferral_check_enable(emac_mac_dev_t *mac_regs, bool enable)
 {
-    mac_regs->gmacconfig.padcrcstrip = enable;
+    mac_regs->gmacconfig.deferralcheck = enable;
 }
 
 static inline void emac_ll_set_preamble_length(emac_mac_dev_t *mac_regs, uint32_t len)
@@ -417,6 +417,11 @@ static inline void emac_ll_flush_trans_fifo_enable(emac_dma_dev_t *dma_regs, boo
     dma_regs->dmaoperation_mode.flush_tx_fifo = enable;
 }
 
+static inline bool emac_ll_get_flush_trans_fifo(emac_dma_dev_t *dma_regs)
+{
+    return dma_regs->dmaoperation_mode.flush_tx_fifo;
+}
+
 static inline void emac_ll_set_transmit_threshold(emac_dma_dev_t *dma_regs, uint32_t threshold)
 {
     dma_regs->dmaoperation_mode.tx_thresh_ctrl = threshold;
@@ -473,9 +478,14 @@ static inline void emac_ll_set_rx_dma_pbl(emac_dma_dev_t *dma_regs, uint32_t pbl
     dma_regs->dmabusmode.rx_dma_pbl = pbl;
 }
 
-static inline void emac_ll_set_prog_burst_len(emac_dma_dev_t *dma_regs, uint32_t len)
+static inline void emac_ll_set_prog_burst_len(emac_dma_dev_t *dma_regs, eth_mac_dma_burst_len_t dma_burst_len)
 {
-    dma_regs->dmabusmode.prog_burst_len = len;
+    dma_regs->dmabusmode.prog_burst_len =   dma_burst_len == ETH_DMA_BURST_LEN_1 ? EMAC_LL_DMA_BURST_LENGTH_1BEAT :
+                                            dma_burst_len == ETH_DMA_BURST_LEN_2 ? EMAC_LL_DMA_BURST_LENGTH_2BEAT :
+                                            dma_burst_len == ETH_DMA_BURST_LEN_4 ? EMAC_LL_DMA_BURST_LENGTH_4BEAT :
+                                            dma_burst_len == ETH_DMA_BURST_LEN_8 ? EMAC_LL_DMA_BURST_LENGTH_8BEAT :
+                                            dma_burst_len == ETH_DMA_BURST_LEN_16 ? EMAC_LL_DMA_BURST_LENGTH_16BEAT :
+                                            EMAC_LL_DMA_BURST_LENGTH_32BEAT;
 }
 
 static inline void emac_ll_enhance_desc_enable(emac_dma_dev_t *dma_regs, bool enable)
