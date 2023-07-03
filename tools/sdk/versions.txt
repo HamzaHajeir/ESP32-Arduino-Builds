@@ -5,5 +5,5 @@ esp-dl: master 0632d24
 esp-insights: main e057926
 esp_littlefs: master 9eeac09
 esp-rainmaker: master ff0dd32
-espressif__esp-dsp: master 27a4881
-tinyusb: master f5d051006
+espressif__esp-dsp: master 5f2bfe1
+tinyusb: master f1e006d09
